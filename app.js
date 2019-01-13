@@ -10,7 +10,43 @@ mongoose.connect("mongodb://localhost/help_io");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
+const admin = require('firebase-admin');
+const functions = require('firebase-functions');
+const Firestore = require('firestore');
 
+var serviceAccount = require("./key.json");
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://my-awesome-project-af874.firebaseio.com"
+});
+
+
+var db = admin.firestore();
+var sleep_yes_data = [];
+var docRef = db.collection('users').doc('Patients').collection('Anna Lovelace').doc('Graph Data').collection('Yes').doc('Sleep');
+var getDoc = docRef.get()
+    .then(doc => {
+        if (!doc.exists) {
+            console.log('No such document!');
+        } else {
+            var data = doc.data();
+
+            for (let i = 0; i < 10; i++) {
+
+                sleep_yes_data.push(Object.entries(data)[0][1][i])
+
+
+            }
+            console.log(sleep_yes_data);
+
+
+        };
+
+    })
+    .catch(err => {
+        console.log('Error getting document', err);
+    });
 
 app.use(require("express-session")(
     {
