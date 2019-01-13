@@ -1,0 +1,38 @@
+body{
+    background-color: #88084b;
+}
+
+.center-please{
+    margin: 30 auto;
+    width:100%;
+}
+
+.white-text{
+    color:#e5e5e5;
+}
+
+.blue-on-black{
+    background-color: black;
+    color:#30CFD0;
+    outline:none;
+    border:none;
+}
+
+.black-on-grey{
+    background-color: #e5e5e5;
+    color:#333333;
+}
+
+.icon{
+    font-size: 2.5rem;
+}
+
+.link{
+    text-decoration: none;
+    color: #333333;
+}
+
+a:hover{
+    text-decoration: none;
+    color: #333333;
+}
